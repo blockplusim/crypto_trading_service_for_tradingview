@@ -1,0 +1,1 @@
+# crypto_trading_service_for_tradingview
