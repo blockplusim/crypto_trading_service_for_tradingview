@@ -57,3 +57,10 @@ apiKey、secret和password可以在欧易个人中心的API中创建（创建API
 **ipWhiteList**：授权使用本服务接口的IP地址集合，每个IP地址用英文逗号 **,** 隔开，这里默认前面四个地址是 TradingView 的官方地址  
 
 
+**运行环境**  
+Python 3.6.10  
+ccxt 1.56.41  
+flask 1.1.2  
+
+**如何运行**  
+修改玩config.ini中的配置后，直接使用 `python okex_trading.py` 启动即可 
