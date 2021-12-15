@@ -1,6 +1,11 @@
+## okex_trading.py 使用指南  
+适用于有python使用经验的朋友，因为只是一个python脚本  
+
 **使用流程**  
-1.在你的服务器上运行这个程序，可以在本页面有百年的 release 中直接下载 exe 程序，将程序所有文件放到你的Windows服务器上解压  
-2.解压出来后，我们需要修改 ***config.ini***  文件。该文件包含以下内容  
+1.购买海外服务器，注意必须是中国大陆以外的，因为许多交易所目前大陆IP无法连接和交易
+2.安装 Python3.6 环境，安装必备的包：ccxt flask 等
+3.我们需要修改 ***config.ini***  文件。该文件包含以下内容  
+
 ```ini
 [account]
 apiKey = 
@@ -38,7 +43,6 @@ apiKey、secret和password可以在欧易个人中心的API中创建（创建API
 **listenPort**：服务监听端口，一般80即可，注意 TradingView 只支持80和443  
 **debugMode**：True或者False，开启debug模式的话日志输出会更详细  
 **ipWhiteList**：授权使用本服务接口的IP地址集合，每个IP地址用英文逗号 **,** 隔开，这里默认前面四个地址是 TradingView 的官方地址  
-
 
 **运行环境**  
 Python 3.6.10  
