@@ -25,6 +25,7 @@
   
 配置完成后，点击 `保存配置`，然后再点击 `启动服务` 即可  
   
-<img src="https://user-images.githubusercontent.com/94948670/146111551-c7a011f0-82fc-4e07-bdec-0989aa1b46ec.png" alt="" width="40%" height="40%" />  
+<img src="https://user-images.githubusercontent.com/94948670/146112100-2be19db2-2dc6-4328-a997-0d68ba335bea.png" alt="" width="40%" height="40%" />  
 
 这个启动完成后，我们就可以对接 `TradingView` 来实现自动交易了
+
