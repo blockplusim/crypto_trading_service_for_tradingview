@@ -27,5 +27,10 @@
   
 <img src="https://user-images.githubusercontent.com/94948670/146112100-2be19db2-2dc6-4328-a997-0d68ba335bea.png" alt="" width="40%" height="40%" />  
 
-这个启动完成后，我们就可以对接 `TradingView` 来实现自动交易了
+这个启动完成后，我们就可以对接 `TradingView` 来实现自动交易了  
+  
+<img src="https://user-images.githubusercontent.com/94948670/146113041-85c79ee7-4917-4953-9f07-17a86e023ee9.png" alt="" width="100%" height="100%" />  
+  
+运行成功界面如上图所示
+
 
