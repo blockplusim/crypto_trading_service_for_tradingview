@@ -16,8 +16,8 @@
 3.此脚本仅作学习使用，请勿
 
 **使用方法**  
-方法一(适合新手小白不会写程序的)：直接使用我这里写好的UI界面程序，在本页面找到“Release”下载Configer程序即可。[前往查看使用说明>>](https://github.com/blockplusim/crypto_trading_service_for_tradingview/blob/main/okex_trading_guide.md)
-方法二(适合有Python开发经验的)：在Python环境中直接运行本`Okex_trading.py`程序。[前往查看使用说明>>](https://github.com/blockplusim/crypto_trading_service_for_tradingview/blob/main/okex_trading_guide.md)
+方法一(适合新手小白不会写程序的)：直接使用我这里写好的UI界面程序，在本页面找到“Release”下载Configer程序即可。[前往查看使用说明>>](https://github.com/blockplusim/crypto_trading_service_for_tradingview/blob/main/okex_trading_guide.md)  
+方法二(适合有Python开发经验的)：在Python环境中直接运行本`Okex_trading.py`程序。[前往查看使用说明>>](https://github.com/blockplusim/crypto_trading_service_for_tradingview/blob/main/okex_trading_guide.md)  
 
 **使用流程**  
 1.在你的服务器上运行这个程序，可以在本页面的 release 中直接下载 exe 程序，将程序所有文件放到你的海外Windows服务器上解压  
