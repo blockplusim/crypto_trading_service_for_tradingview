@@ -244,8 +244,12 @@ def order():
     # 平仓
     elif _params['side'].lower() in ["close"]:
         lastOrdType = None
-        ret["cancelLastOrder"] = cancelLastOrder(_params['symbol'], lastOrdId)
         ret["closedPosition"] = closeAllPosition(_params['symbol'], _params['tdMode'])
+
+    # 取消挂单
+    elif _params['side'].lower() in ["cancel"]:
+        lastOrdType = None
+        ret["cancelLastOrder"] = cancelLastOrder(_params['symbol'], lastOrdId)
     else:
         pass
 
