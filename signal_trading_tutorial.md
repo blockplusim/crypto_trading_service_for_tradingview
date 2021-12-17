@@ -54,7 +54,7 @@ alertcondition(condition3  , title="Cancel", message="Cancel")
   
 ![image](https://user-images.githubusercontent.com/94948670/146495044-b86d9e2c-236a-4b07-9eeb-ed75715bf073.png)  
   
-其他的不需要修改，接着我们把TradingView策略的代码用“//”注释掉，选中图中代码注释按ALT+/键即可（注释的意思就是让所注释的代码失效，不执行功能）  
+其他的不需要修改，接着我们把TradingView策略的代码用“//”注释掉，选中图中代码注释按CTRL+/键即可（注释的意思就是让所注释的代码失效，不执行功能）  
   
 ![image](https://user-images.githubusercontent.com/94948670/146495403-7dab9953-20e5-4848-929d-a60b51b43133.png)  
   
