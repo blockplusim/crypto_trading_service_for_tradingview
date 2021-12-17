@@ -11,11 +11,10 @@ condition3 = false
 //开多代码信号
 plotshape(condition1, text='▲', style=shape.labeldown, textcolor=color.white, color = color.green,   location = location.abovebar, title = "开多")
 alertcondition(condition1 , title="Buy", message="Buy")
-//开空代码信号模板  
+//开空代码信号  
 plotshape(condition2, text='▼', style=shape.labeldown, textcolor=color.white, color = color.red,   location = location.abovebar, title = "开空")
 alertcondition(condition2  , title="Sell", message="Sell")
-//平仓代码模板   
-plotshape(condition3, text='Cancel', style=shape.labeldown, textcolor=color.white, color = color.red,   location = location.abovebar, title = "开空")
+//平仓代码信号  
 alertcondition(condition3  , title="Cancel", message="Cancel")
 ```  
 
