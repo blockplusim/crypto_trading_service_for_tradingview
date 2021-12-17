@@ -72,6 +72,7 @@ if 'ouyihostname' in config['account']:
 
 # lastOrdId
 lastOrdId = 0
+lastOrdType = None
 
 # 设置杠杆
 def setLever(_symbol, _tdMode, _lever):
@@ -117,10 +118,10 @@ def createOrder(_symbol, _amount, _price, _side, _ordType, _tdMode):
         global lastOrdId
         lastOrdId = res['data'][0]['ordId']
         # logging.info("privatePostTradeOrder " + json.dumps(res))
-        return True
+        return True, "create order successfully"
     except Exception as e:
         logging.error("createOrder " + str(e))
-        return False
+        return False, str(e)
 
 
 # 获取公共数据，包含合约面值等信息
@@ -182,14 +183,6 @@ setLever(symbol, tdMode, lever)
 
 app = Flask(__name__)
 
-ret = {
-    "cancelLastOrder": False,
-    "closedPosition": False,
-    "createOrderRes": False,
-    "msg": ""
-}
-
-
 @app.before_request
 def before_req():
     if request.json is None:
@@ -202,6 +195,12 @@ def before_req():
 
 @app.route('/order', methods=['POST'])
 def order():
+    ret = {
+        "cancelLastOrder": False,
+        "closedPosition": False,
+        "createOrderRes": False,
+        "msg": ""
+    }
     # 获取参数 或 填充默认参数
     _params = request.json
     if "apiSec" not in _params or _params["apiSec"] != apiSec:
@@ -221,7 +220,16 @@ def order():
         setLever(_params['symbol'], _params['lever'], _params['lever'])
 
     # 注意：开单的时候会先把原来的仓位平掉，然后再把你的多单挂上
+    global lastOrdType
     if _params['side'].lower() in ["buy", "sell"]:
+        # 不允许本次开单和上次开单是一样的方向
+        if lastOrdType is not None:
+            if lastOrdType == "sell" and _params['side'] == "sell":
+                ret['msg'] = "sell side duplacated"
+                return ret
+            if lastOrdType == "buy" and _params['side'] == "buy":
+                ret['msg'] = "buy side duplacated"
+                return ret
         # 先取消未成交的挂单 然后平仓
         ret["cancelLastOrder"] = cancelLastOrder(_params['symbol'], lastOrdId)
         ret["closedPosition"] = closeAllPosition(_params['symbol'], _params['tdMode'])
@@ -230,12 +238,12 @@ def order():
         if sz < 1:
             ret['msg'] = 'Amount is too small. Please increase amount.'
         else:
-            ret["createOrderRes"] = createOrder(_params['symbol'], sz, _params['price'], _params['side'],
+            ret["createOrderRes"], ret['msg'] = createOrder(_params['symbol'], sz, _params['price'], _params['side'],
                                                 _params['ordType'], _params['tdMode'])
-            if ret["createOrderRes"]:
-                ret['msg'] = "createOrder successfully."
+            lastOrdType = _params['side']
     # 平仓
     elif _params['side'].lower() in ["close"]:
+        lastOrdType = None
         ret["cancelLastOrder"] = cancelLastOrder(_params['symbol'], lastOrdId)
         ret["closedPosition"] = closeAllPosition(_params['symbol'], _params['tdMode'])
     else:
