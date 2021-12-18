@@ -3,7 +3,7 @@
 
 **使用前准备**  
 1.需要准备一个欧易OKEX交易所账号，如果你还没有注册，请先[注册一个账号](http://okex.pw/tvbot)，然后到账号API申请V5API，备注名称随意，权限需要选择只读和交易，不要勾选提现！然后确认添加即可  
-2.你需要购买一台海外的服务器用于24小时自动运行这个自动交易程序，可以选择腾讯云轻量应用服务器香港等东亚地区的服务器（注意必须买海外的，推荐香港），可查看[腾讯轻量服务器教程](https://cloud.tencent.com/document/product/1207/44549)  
+2.你需要购买一台海外的服务器用于24小时自动运行这个自动交易程序，可以选择腾讯云轻量应用服务器香港等东亚地区的服务器（注意必须买海外的，推荐香港），可查看[腾讯轻量服务器教程](https://www.bilibili.com/video/BV1VP4y1H71e?spm_id_from=333.999.0.0)  
 
 **使用步骤**  
 1.在服务器上下载程序，从 `release` 中下载 `okex_trading_ui` 程序并解压到服务器上。[服务器上打开这个链接下载](https://github.com/blockplusim/crypto_trading_service_for_tradingview/releases)  
