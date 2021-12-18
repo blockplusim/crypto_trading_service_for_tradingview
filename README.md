@@ -20,5 +20,5 @@
 方法二(适合有Python开发经验的)：在Python环境中直接运行本`Okex_trading.py`程序。[前往查看使用说明>>](https://github.com/blockplusim/crypto_trading_service_for_tradingview/blob/main/okex_trading_guide.md)  
 
 **视频教程**  
-Youtube教程：https://youtu.be/UEYo3aVgtjQ  
+Youtube教程：https://www.youtube.com/channel/UCp7irV9eIH1BAKSAAQOJcXw  
 Bilibili教程：https://www.bilibili.com/video/BV1aF411z7tM/
