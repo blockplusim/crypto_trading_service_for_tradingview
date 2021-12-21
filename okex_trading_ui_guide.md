@@ -17,7 +17,7 @@
   
 下一步我们配置交易相关信息  
   
-<img src="https://user-images.githubusercontent.com/94948670/146111099-c4fc3341-038d-48c3-a80b-55a95647d638.png" alt="" width="40%" height="40%" />  
+<img src="https://user-images.githubusercontent.com/94948670/146869947-88c122d3-d7b5-442b-afef-b2409c1dc827.png" alt="" width="40%" height="40%" />  
   
 下一步在服务配置这边，一般需要修改 `通信密钥`， 这里就是一个简单的密码，用于验证身份。我们在TradingView调用的时候需要用到  
   
