@@ -8,6 +8,9 @@ import json
 import urllib.request
 import requests
 import os
+import _thread
+import time
+
 
 # 读取配置文件，优先读取json格式，如果没有就读取ini格式
 config = {}
@@ -21,6 +24,8 @@ elif os.path.exists('./config.ini'):
         for j in dict(conf._sections[i]):
             config[i][j] = conf.get(i, j)
     config['account']['enable_proxies'] = config['account']['enable_proxies'].lower() == "true"
+    config['trading']['enable_stop_loss'] = config['trading']['enable_stop_loss'].lower() == "true"
+    config['trading']['enable_stop_gain'] = config['trading']['enable_stop_gain'].lower() == "true"
 else:
     logging.info("配置文件 config.json 不存在，程序即将退出")
     exit()
@@ -73,6 +78,55 @@ if 'ouyihostname' in config['account']:
 # lastOrdId
 lastOrdId = 0
 lastOrdType = None
+lastAlgoOrdId = 0
+
+# 挂止盈止损单
+def sltpThread(oid, side, symbol, sz, tdMode, config):
+    global lastOrdType,lastAlgoOrdId
+    privatePostTradeOrderAlgoParams = {
+        "instId": symbol,
+        "tdMode": tdMode,
+        "side": "sell" if side.lower() == "buy" else "buy",
+        "ordType": "oco",
+        "sz": sz
+    }
+    if config['trading']['enable_stop_loss']:
+        privatePostTradeOrderAlgoParams['slTriggerPx'] = config['trading']['stop_loss_trigger_price']
+        privatePostTradeOrderAlgoParams['slOrdPx'] = config['trading']['stop_loss_order_price']
+    if config['trading']['enable_stop_gain']:
+        privatePostTradeOrderAlgoParams['tpTriggerPx'] = config['trading']['stop_gain_trigger_price']
+        privatePostTradeOrderAlgoParams['tpOrdPx'] = config['trading']['stop_gain_order_price']
+    while True:
+        try:
+            privateGetTradeOrderRes = exchange.privateGetTradeOrder(params={"ordId": oid,"instId": symbol})
+            print(privateGetTradeOrderRes)
+            if privateGetTradeOrderRes['data'][0]['state'] == "filled":
+                avgPx = float(privateGetTradeOrderRes['data'][0]['avgPx'])
+                direction = -1 if side.lower() == "buy" else 1
+                slTriggerPx = (1 + direction * float(config['trading']['stop_loss_trigger_price'])*0.01) * avgPx
+                tpOrdPx = (1 + direction * float(config['trading']['stop_gain_order_price'])*0.01) * avgPx
+                tpTriggerPx = (1 - direction * float(config['trading']['stop_gain_trigger_price'])*0.01) * avgPx
+                slOrdPx = (1 - direction * float(config['trading']['stop_loss_order_price'])*0.01) * avgPx
+                privatePostTradeOrderAlgoParams['slTriggerPx'] = '%.12f' % slTriggerPx
+                privatePostTradeOrderAlgoParams['slOrdPx'] = '%.12f' % tpTriggerPx
+                privatePostTradeOrderAlgoParams['tpTriggerPx'] = '%.12f' % slOrdPx
+                privatePostTradeOrderAlgoParams['tpOrdPx'] = '%.12f' % tpOrdPx
+                print("订单{oid}设置止盈止损...".format(oid=oid))
+                privatePostTradeOrderAlgoRes = exchange.privatePostTradeOrderAlgo(params=privatePostTradeOrderAlgoParams)
+                if 'code' in privatePostTradeOrderAlgoRes and privatePostTradeOrderAlgoRes['code'] == '0':
+                    lastAlgoOrdId = privatePostTradeOrderAlgoRes['data'][0]['algoId']
+                    break
+                else:
+                    continue
+            elif privateGetTradeOrderRes['data'][0]['state'] == "canceled":
+                lastOrdType = None
+                break
+        except Exception as e:
+            print(e)
+        time.sleep(1)
+    print("订单{oid}止盈止损单挂单结束".format(oid=oid))
+
+
 
 # 设置杠杆
 def setLever(_symbol, _tdMode, _lever):
@@ -84,6 +138,8 @@ def setLever(_symbol, _tdMode, _lever):
     except Exception as e:
         # logging.error("privatePostTradeCancelBatchOrders " + str(e))
         return False
+
+# 取消止盈止损订单
 
 
 # 市价全平
@@ -107,7 +163,6 @@ def closeAllPosition(_symbol, _tdMode):
         logging.error("privatePostTradeClosePosition " + str(e))
         return False
 
-
 # 开仓
 def createOrder(_symbol, _amount, _price, _side, _ordType, _tdMode):
     try:
@@ -115,9 +170,14 @@ def createOrder(_symbol, _amount, _price, _side, _ordType, _tdMode):
         res = exchange.privatePostTradeOrder(
             params={"instId": _symbol, "sz": _amount, "px": _price, "side": _side, "ordType": _ordType,
                     "tdMode": _tdMode})
-        global lastOrdId
+        global lastOrdId,config
         lastOrdId = res['data'][0]['ordId']
-        # logging.info("privatePostTradeOrder " + json.dumps(res))
+        # 如果止损
+        if config['trading']['enable_stop_loss'] or config['trading']['enable_stop_gain']:
+            try:
+                _thread.start_new_thread(sltpThread, (lastOrdId, _side, _symbol, _amount, _tdMode, config))
+            except:
+                print("Error: unable to run sltpThread")
         return True, "create order successfully"
     except Exception as e:
         logging.error("createOrder " + str(e))
