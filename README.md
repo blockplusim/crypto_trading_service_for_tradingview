@@ -21,4 +21,4 @@
 
 **视频教程**  
 Youtube教程：https://www.youtube.com/channel/UCp7irV9eIH1BAKSAAQOJcXw  
-Bilibili教程：https://www.bilibili.com/video/BV1aF411z7tM/
+Bilibili教程：https://space.bilibili.com/1970832679
