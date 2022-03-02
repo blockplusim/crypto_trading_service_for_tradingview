@@ -108,8 +108,8 @@ def sltpThread(oid, side, symbol, sz, tdMode, config):
                 tpTriggerPx = (1 - direction * float(config['trading']['stop_gain_trigger_price'])*0.01) * avgPx
                 slOrdPx = (1 - direction * float(config['trading']['stop_loss_order_price'])*0.01) * avgPx
                 privatePostTradeOrderAlgoParams['slTriggerPx'] = '%.12f' % slTriggerPx
-                privatePostTradeOrderAlgoParams['slOrdPx'] = '%.12f' % tpTriggerPx
-                privatePostTradeOrderAlgoParams['tpTriggerPx'] = '%.12f' % slOrdPx
+                privatePostTradeOrderAlgoParams['slOrdPx'] = '%.12f' % slOrdPx
+                privatePostTradeOrderAlgoParams['tpTriggerPx'] = '%.12f' % tpTriggerPx
                 privatePostTradeOrderAlgoParams['tpOrdPx'] = '%.12f' % tpOrdPx
                 print("订单{oid}设置止盈止损...".format(oid=oid))
                 privatePostTradeOrderAlgoRes = exchange.privatePostTradeOrderAlgo(params=privatePostTradeOrderAlgoParams)
@@ -164,7 +164,7 @@ def closeAllPosition(_symbol, _tdMode):
         return False
 
 # 开仓
-def createOrder(_symbol, _amount, _price, _side, _ordType, _tdMode):
+def createOrder(_symbol, _amount, _price, _side, _ordType, _tdMode, enable_stop_loss=False, stop_loss_trigger_price=0, stop_loss_order_price=0, enable_stop_gain=False, stop_gain_trigger_price=0, stop_gain_order_price=0):
     try:
         # 挂单
         res = exchange.privatePostTradeOrder(
@@ -172,12 +172,12 @@ def createOrder(_symbol, _amount, _price, _side, _ordType, _tdMode):
                     "tdMode": _tdMode})
         global lastOrdId,config
         lastOrdId = res['data'][0]['ordId']
-        # 如果止损
+        # 如果止盈止损
         if config['trading']['enable_stop_loss'] or config['trading']['enable_stop_gain']:
             try:
                 _thread.start_new_thread(sltpThread, (lastOrdId, _side, _symbol, _amount, _tdMode, config))
             except:
-                print("Error: unable to run sltpThread")
+                logging.error("Error: unable to run sltpThread")
         return True, "create order successfully"
     except Exception as e:
         logging.error("createOrder " + str(e))
@@ -321,7 +321,7 @@ if __name__ == '__main__':
         ip = json.load(urllib.request.urlopen('http://httpbin.org/ip'))['origin']
         logging.info("*区块普拉斯(Youtube/Bilibili)自动交易服务端\n")
         logging.info(
-            "①.此程序仅支持OKEX欧易交易所(http://www.okex.pw/20off 此链接注册的账号交易手续费优惠二折)".format(
+            "①.此程序仅支持OKEX欧易交易所(https://www.okx.com/join/tradingview 此链接注册的账号交易手续费优惠二折)".format(
                 listenPort=listenPort, listenHost=listenHost, ip=ip))
         logging.info(
             "②.建议运行再在有独立IP的服务器上，若在个人电脑运行，需要FRP内网穿透，而且影响软件效率".format(
