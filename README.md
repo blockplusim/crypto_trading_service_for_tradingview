@@ -2,6 +2,14 @@
 
 你是否想将TradingView交易策略做实盘运行但是苦于不会代码？这个程序就是让你即使不会写代码也能将TradingView策略实盘交易实现  
 欧易交易所TradingView交易机器人接口服务，通过HTTP接口来对接TradingView交易策略和交易指标，实现TradingView策略自动交易  
+
+**视频教程**  
+Youtube教程：https://www.youtube.com/channel/UCp7irV9eIH1BAKSAAQOJcXw  
+Bilibili教程：https://space.bilibili.com/1970832679
+
+**有疑问如何与我联系**  
+我的微信ID是：blockplus  
+也可以加入TG群组保持联系：https://t.me/tvcbot8  
   
 **它是如何工作的**  
 
@@ -19,6 +27,3 @@
 方法一(推荐！适合新手小白不会写程序的)：直接使用我这里写好的UI界面程序，在本页面找到“Release”下载Configer程序即可。[前往查看使用说明>>](https://github.com/blockplusim/crypto_trading_service_for_tradingview/blob/main/okex_trading_ui_guide.md)  
 方法二(适合有Python开发经验的)：在Python环境中直接运行本`Okex_trading.py`程序。[前往查看使用说明>>](https://github.com/blockplusim/crypto_trading_service_for_tradingview/blob/main/okex_trading_guide.md)  
 
-**视频教程**  
-Youtube教程：https://www.youtube.com/channel/UCp7irV9eIH1BAKSAAQOJcXw  
-Bilibili教程：https://space.bilibili.com/1970832679
