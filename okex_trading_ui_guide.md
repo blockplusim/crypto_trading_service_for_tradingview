@@ -8,24 +8,24 @@
 **使用步骤**  
 1.在服务器上下载程序，从 `release` 中下载 `okex_trading_ui` 程序并解压到服务器上。[服务器上打开这个链接下载](https://github.com/blockplusim/crypto_trading_service_for_tradingview/releases)  
 2.下载完成以后解压，直接双击打开 `okex_trading_ui.exe` 界面如下：  
+
+<img src="https://user-images.githubusercontent.com/94948670/157452366-b8aaffc9-87ae-43d7-bc44-0477336e536d.png" alt="" width="60%" height="40%" />  
   
-<img src="https://user-images.githubusercontent.com/94948670/146109501-70f09b0d-59c2-4690-8993-64c33d823d0f.png" alt="" width="40%" height="40%" />  
-  
-在上面的界面中，我们看到需要用到三个参数 apiKey / secret / password 。这三个参数我们可以在欧易OKEX个人中心中API中申请V5API中获取，然后把三个参数复制过来  
+在上面的界面中，我们看到需要用到三个参数 apiKey / secret / password 。这三个参数我们可以在欧易OKEX个人中心中API中申请V5API中获取，然后把三个参数复制过来。如果你用的是香港或者其他海外服务器，那么启用代理这个不需要勾选  
   
 <img src="https://user-images.githubusercontent.com/94948670/146110819-1b3a1ea5-39df-4fd7-8a98-35d7ca0763a0.png" alt="" width="70%" height="70%" />  
   
-下一步我们配置交易相关信息  
+下一步我们配置交易相关信息，这里的防止重复下单意思是不允许重复下单，也就是不允许金字塔加仓模式的，如果允许加仓，就不要勾选防止重复下单  
   
-<img src="https://user-images.githubusercontent.com/94948670/146869947-88c122d3-d7b5-442b-afef-b2409c1dc827.png" alt="" width="40%" height="40%" />  
+<img src="https://user-images.githubusercontent.com/94948670/157452612-e7b12e59-3518-4dc1-9133-3e7a955550fc.png" alt="" width="60%" height="40%" />  
   
-下一步在服务配置这边，一般需要修改 `通信密钥`， 这里就是一个简单的密码，用于验证身份。我们在TradingView调用的时候需要用到  
+下一步在服务配置这边，一般需要修改 `通信密钥` 和 `外网IP`， 这里通信密钥就是一个简单的密码，用于验证身份；外网IP就是你运行这个软件的服务器的IP地址。我们在TradingView调用的时候需要用到  
   
-<img src="https://user-images.githubusercontent.com/94948670/146111335-9842154a-3f0b-48d2-8cf1-a8d9ba5d6a02.png" alt="" width="40%" height="40%" />  
+<img src="https://user-images.githubusercontent.com/94948670/157452927-a67bda7e-4d30-418c-a45d-1db5091946b3.png" alt="" width="60%" height="40%" />  
   
-配置完成后，点击 `保存配置`，然后再点击 `启动服务` 即可  
+配置完成后，点击 `保存配置`，然后再点击 `启动服务` 即可，然后点击 `查看日志` 可以看到运行的情况  
   
-<img src="https://user-images.githubusercontent.com/94948670/146112100-2be19db2-2dc6-4328-a997-0d68ba335bea.png" alt="" width="40%" height="40%" />  
+<img src="https://user-images.githubusercontent.com/94948670/157453563-7c79d750-7e83-4e23-8941-2e207121c5d2.png" alt="" width="60%" height="40%" />  
 
 这个启动完成后，我们就可以对接 `TradingView` 来实现自动交易了  
   
