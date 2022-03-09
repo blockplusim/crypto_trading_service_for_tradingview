@@ -32,5 +32,17 @@
 <img src="https://user-images.githubusercontent.com/94948670/146113041-85c79ee7-4917-4953-9f07-17a86e023ee9.png" alt="" width="100%" height="100%" />  
   
 在香港服务器上运行成功界面如上图所示
-
-
+  
+当我们运行成功后，下一步需要和TradingView进行对接
+  
+点击 `警报生成` 选项来生成TradingView对接信息
+  
+<img src="https://user-images.githubusercontent.com/94948670/157454834-83a584bb-c06c-48fc-a6b5-f03e6f2a09a9.png" alt="" width="60%" height="100%" />  
+  
+这里有四个选项，分别是 `做多`、`做空`、`市价平仓`和`取消挂单`，我们可以根据TradingView的代码需求进行对接，点击 `生成TradingView告警配置` 生成如下信息
+  
+<img src="https://user-images.githubusercontent.com/94948670/157455288-2d244acb-6fba-4071-8cab-1ae97cff9cf3.png" alt="" width="60%" height="100%" /> 
+  
+将对应的信息粘贴到TradingView配置项即可
+  
+<img src="https://user-images.githubusercontent.com/94948670/157455696-cd957f17-f6c1-467d-a54f-d5bb05c708df.png" alt="" width="100%" height="100%" /> 
