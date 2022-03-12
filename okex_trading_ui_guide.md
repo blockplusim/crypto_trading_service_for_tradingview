@@ -12,7 +12,7 @@
   
 **使用步骤**  
 1.在服务器上下载程序，从 `release` 中下载 `okex_trading_ui` 程序并解压到服务器上。[服务器上打开这个链接下载](https://github.com/blockplusim/crypto_trading_service_for_tradingview/releases)  
-2.下载完成以后解压，直接双击打开 `okex_trading_ui.exe` 界面如下：  
+2.下载完成以后解压，直接双击打开 `configurator.exe` 界面如下：  
 
 <img src="https://user-images.githubusercontent.com/94948670/157452366-b8aaffc9-87ae-43d7-bc44-0477336e536d.png" alt="" width="60%" height="40%" />  
   
