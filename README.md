@@ -1,5 +1,12 @@
 # ouyi_trading_bot_for_tradingview
+**[重大更新]最新网页版无需自行购买服务器安装啦**
+TVCBot网页版交易机器人上线了，官网：https://www.tvcbot.com/aff.php?aff=3
+如果大家不想自己去买服务器部署，省去服务器部署和安装软件的环节，可以尝试网页版的交易机器人，直接就能用起来了，不用看区块普拉斯前面的软件部署视频了
 
+**加入我们的交流群**  
+建议加入TG群组防止失联保持联系：https://t.me/tvcbot8  
+
+**项目简介**  
 你是否想将TradingView交易策略做实盘运行但是苦于不会代码？这个程序就是让你即使不会写代码也能将TradingView策略实盘交易实现  
 欧易交易所TradingView交易机器人接口服务，通过HTTP接口来对接TradingView交易策略和交易指标，实现TradingView策略自动交易  
   
@@ -28,4 +35,4 @@ Bilibili教程：https://space.bilibili.com/1970832679
 我的微信ID是：blockplus  
 <img src="https://user-images.githubusercontent.com/94948670/158001889-cd04ca88-ee02-42a8-9bd1-3cada1944d1c.jpg" alt="" width="15%" height="15%" />    
   
-建议加入TG群组防止失联保持联系：https://t.me/tvcbot8  
+
