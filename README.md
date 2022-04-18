@@ -10,7 +10,12 @@ TVCBot网页版交易机器人上线了，官网：https://www.tvcbot.com/aff.ph
 你是否想将TradingView交易策略做实盘运行但是苦于不会代码？这个程序就是让你即使不会写代码也能将TradingView策略实盘交易实现  
 欧易交易所TradingView交易机器人接口服务，通过HTTP接口来对接TradingView交易策略和交易指标，实现TradingView策略自动交易  
   
+
   
+**-------------------以上是旧版说明-------------------**  
+**-------------------以下是旧版说明-------------------**  
+  
+
 **它是如何工作的**  
 
 ![image](https://user-images.githubusercontent.com/94948670/143181162-54d46868-d4cd-4f1f-bbc4-a5836f0c1f5d.png)  
