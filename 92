@@ -1,0 +1,54 @@
+//@version=4
+strategy("Custom Entry Rules with Williams Fractals and ATR", shorttitle="CERWF_ATR", overlay=true)
+
+// RSI
+rsiPeriod = input(14, title="RSI Period", minval=1)
+rsiSource = close
+rsi = rsi(rsiSource, rsiPeriod)
+
+// Moving Averages
+fastLength = input(5, title="Fast Moving Average Length", minval=1)
+mediumLength = input(13, title="Medium Moving Average Length", minval=1)
+slowLength = input(21, title="Slow Moving Average Length", minval=1)
+fastMA = sma(close, fastLength)
+mediumMA = sma(close, mediumLength)
+slowMA = sma(close, slowLength)
+
+// ATR
+atrLength = input(14, title="ATR Period", minval=1)
+atr = atr(atrLength)
+atrMultiplier = 1.5
+
+// Williams Fractals
+upFractal = high[2] > high[1] and high[2] > high[3] and high[2] > high[4] and high[2] > high
+downFractal = low[2] < low[1] and low[2] < low[3] and low[2] < low[4] and low[2] < low
+
+// Entry rules
+longCondition = downFractal and fastMA > mediumMA and mediumMA > slowMA and rsi > 10
+if longCondition
+    strategy.entry("Long", strategy.long, when = longCondition)
+
+shortCondition = upFractal and fastMA < mediumMA and mediumMA < slowMA and rsi < 90
+if shortCondition
+    strategy.entry("Short", strategy.short, when = shortCondition)
+
+// Stop Loss
+longStopLoss = close - (atr * atrMultiplier)
+shortStopLoss = close + (atr * atrMultiplier)
+
+// Take Profit
+longTakeProfit = rsi >= 70
+shortTakeProfit = rsi <= 30
+
+if longTakeProfit
+    strategy.close("Long")
+
+if shortTakeProfit
+    strategy.close("Short")
+
+// Trailing Stop Loss
+longTrailStop = atr * atrMultiplier
+shortTrailStop = atr * atrMultiplier
+strategy.exit("Long Trailing Stop", "Long", trail_points=longTrailStop)
+strategy.exit("Short Trailing Stop", "Short", trail_points=shortTrailStop)
+
